@@ -7,11 +7,11 @@
     "storage": "./database/rapido-backend-dev.sqlite"
   },
   "test": {
-    "username": "root",
+    "username": null,
     "password": null,
-    "database": "rapido-backend-test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "database": "rapido-backend-dev",
+    "dialect": "sqlite",
+    "storage": "./database/rapido-backend-test.sqlite"
   },
   "production": {
     "username": "root",

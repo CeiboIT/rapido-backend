@@ -8,6 +8,9 @@ module.exports = function (grunt) {
   // load all grunt tasks
   require('load-grunt-tasks')(grunt);
 
+  grunt.loadNpmTasks('grunt-env');
+  grunt.loadNpmTasks('sequelize-fixtures');
+
   var reloadPort = 35729, files;
 
   grunt.initConfig({
@@ -20,9 +23,22 @@ module.exports = function (grunt) {
             }
         }
     },
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec',
+        },
+        src: ['test/**/*.js']
+      }
+    },
     develop: {
       server: {
         file: 'bin/www'
+      }
+    },
+    env: {
+      test: {
+        NODE_ENV: 'test'
       }
     },
     watch: {
@@ -65,7 +81,6 @@ module.exports = function (grunt) {
   files = grunt.config('watch.server.files');
   files = grunt.file.expand(files);
 
-  grunt.loadNpmTasks('sequelize-fixtures');
   grunt.registerTask('delayed-livereload', 'Live reload after the node server has restarted.', function () {
     var done = this.async();
     setTimeout(function () {
@@ -85,4 +100,11 @@ module.exports = function (grunt) {
     'develop',
     'watch'
   ]);
+
+  grunt.registerTask('test', function () {
+    grunt.task.run([
+      'env:test',
+      'mochaTest'
+    ]);
+  });
 };
