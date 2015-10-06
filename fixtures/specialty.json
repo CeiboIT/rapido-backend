@@ -1,0 +1,14 @@
+[
+    {
+        "model": "Specialty",
+        "data": {
+            "name": "Painting"
+        }
+    },
+    {
+        "model": "Specialty",
+        "data": {
+            "name": "Plumber"
+        }
+    }
+]

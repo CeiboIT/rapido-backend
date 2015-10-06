@@ -12,6 +12,14 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    fixtures: {
+        import_test_data: {
+            src: ['fixtures/*.json'],
+            models: function () {  //returns mapping model name: model
+                return require('./app/models'); 
+            }
+        }
+    },
     develop: {
       server: {
         file: 'bin/www'
@@ -57,6 +65,7 @@ module.exports = function (grunt) {
   files = grunt.config('watch.server.files');
   files = grunt.file.expand(files);
 
+  grunt.loadNpmTasks('sequelize-fixtures');
   grunt.registerTask('delayed-livereload', 'Live reload after the node server has restarted.', function () {
     var done = this.async();
     setTimeout(function () {
