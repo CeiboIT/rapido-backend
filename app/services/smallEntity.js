@@ -15,9 +15,8 @@ service.findAll = function () {
 };
 
 service.create = function (smallEntity) {
-	models.SmallEntity.create(smallEntity)
+	return models.SmallEntity.create(smallEntity)
 		.success(function (newSmallEntity) {
-			console.log(newSmallEntity);
 			return newSmallEntity;
 		})
 		.fail(function (err) {
