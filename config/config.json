@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": null,
+    "password": null,
+    "database": "rapido-backend-dev",
+    "dialect": "sqlite",
+    "storage": "./database/rapido-backend-dev.sqlite"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "rapido-backend-test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "rapido-backend-prod",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
