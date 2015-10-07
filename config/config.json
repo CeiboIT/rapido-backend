@@ -11,7 +11,8 @@
     "password": null,
     "database": "rapido-backend-dev",
     "dialect": "sqlite",
-    "storage": "./database/rapido-backend-test.sqlite"
+    "storage": "./database/rapido-backend-test.sqlite",
+    "logging": false
   },
   "production": {
     "username": "root",

@@ -2,10 +2,10 @@
 
 var express = require('express');
 var router = express.Router();
-var smallEntityService = require('../services/smallEntity');
+var personService = require('../services/person');
 
 router.get('/', function (req, res) {
-	smallEntityService.findAll()
+	personService.findAll()
 		.success(function (response) {
   			res.send(response);
 		})
@@ -15,8 +15,8 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-	var smallEntity = req.body;
-	if (!smallEntityService.create(smallEntity)) {
+	var person = req.body;
+	if (!personService.create(person)) {
 		res.sendStatus(500);
 	}
 	res.sendStatus(200);	

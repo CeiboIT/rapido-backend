@@ -3,17 +3,11 @@
 var assert = require('chai').assert;
 var smallEntityService = require('../app/services/smallEntity');
 var specialtyService = require('../app/services/specialty');
-var models = require('../app/models/index.js');
-var sequelize_fixtures = require('sequelize-fixtures');
+var testUtils = require('./utils');
 
 var newSmallEntity = {
 	name: 'pequeña entidad',
 	specialties: []
-};
-
-var loadFixtures = function () {
-	console.log('loading fixtures ...');
-	return sequelize_fixtures.loadFile('fixtures/specialty.json', models);
 };
 
 var populateSmallEntity = function () {
@@ -29,10 +23,7 @@ var populateSmallEntity = function () {
 };
 
 before(function (done) {
-	models.sequelize.sync({force: true})
-		.then(function () {
-			return loadFixtures();
-		})
+	testUtils.createTestDB()
 		.then(function () {
 			return populateSmallEntity();
 		})
@@ -51,7 +42,6 @@ describe('SmallEntity CRUD', function () {
 				assert.isNotNull(response.dataValues.id, 'SmallEntity not inserted');
 				assert.equal(response.dataValues.name, newSmallEntity.name, 'Wrong SmallEntity values');
 				assert.equal(response.getSpecialties().lenght, newSmallEntity.specialties.lenght, 'Wrong specialties');
-				console.log(newSmallEntity);
 				done();
 			});
 	});
