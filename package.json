@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "debug": "node --debug-brk ./bin/www"
+    "test": "node --debug-brk /home/seba/.nvm/v0.10.38/bin/grunt test",
+    "debug": "node --debug-brk /home/seba/.nvm/v0.10.38/bin/grunt"
   },
   "dependencies": {
     "body-parser": "^1.13.3",

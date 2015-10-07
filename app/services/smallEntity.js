@@ -15,12 +15,18 @@ service.findAll = function () {
 };
 
 service.create = function (smallEntity) {
-	return models.SmallEntity.create(smallEntity)
-		.success(function (newSmallEntity) {
-			return newSmallEntity;
+	// first, create a non-persistent entity
+	var newSmallEntity = models.SmallEntity.build(smallEntity);
+	// set associated values
+	newSmallEntity.setSpecialties(smallEntity.specialties);
+
+	// persist into db
+	return newSmallEntity.save()
+		.then(function (saved) {
+			return saved;
 		})
 		.fail(function (err) {
-			console.error(err);
+			console.error('Error saving SmallEntity', err);
 			return false;
 		});
 };
